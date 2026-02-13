@@ -1,28 +1,32 @@
+/**
+ * Koleksiyonlarda Sık Kullanılan Metodlar
+ */
 void main(List<String> args) {
   var sayilar = <int>[10, 120, 50, 75, 9];
-  if (sayilar.isNotEmpty) {
-    print(sayilar.first);
-    print(sayilar.last);
-  }
-  sayilar.add(50);
-  var yeniListe = <int>[100,60,90,50];
-  sayilar.addAll(yeniListe);
-  sayilar.addAll([12,13,14]);
-  print(sayilar);
-
-
-  sayilar.remove(50);// ilk gördüğü yerden siler
-  print(sayilar);
-
-  sayilar.removeLast();// son elemanı yerden siler
-  sayilar.removeAt(0);// 0 indeksli elemanı siler
-  print(sayilar.elementAt(0));// 0 indeksli elemanı getir
-  print(sayilar.indexOf(50));// saysının indexini veriri
-
-  print(sayilar);
-  sayilar.shuffle();// listeyi karıştırır
-  print(sayilar);
-
-  print(sayilar.contains(85));// sayıların içerisinde 85 varmı
   
+  // 1. Durum Kontrolleri
+  if (sayilar.isNotEmpty) {
+    print("Listenin ilk elemanı: ${sayilar.first}");
+    print("Listenin son elemanı: ${sayilar.last}");
+  }
+  
+  // 2. Eleman Ekleme
+  sayilar.add(50);
+  var yeniListe = <int>[100, 60, 90];
+  sayilar.addAll(yeniListe); // Başka bir listeyi sonuna ekler.
+  
+  // 3. Eleman Silme
+  sayilar.remove(50); // Bulduğu İLK 50 değerini siler.
+  sayilar.removeLast(); // Son elemanı siler.
+  sayilar.removeAt(0); // Belirli bir indeksteki elemanı siler.
+  
+  // 4. Bilgi ve Düzenleme
+  print("İndeks 0'daki eleman: ${sayilar.elementAt(0)}");
+  print("120 sayısının indeksi: ${sayilar.indexOf(120)}");
+  
+  print("Karıştırma öncesi: $sayilar");
+  sayilar.shuffle(); // Elemanların yerini rastgele değiştirir.
+  print("Karıştırma sonrası: $sayilar");
+
+  print("Listede 85 var mı? ${sayilar.contains(85)}");
 }

@@ -1,31 +1,38 @@
+/**
+ * Koleksiyon Yapıları: Sabit Uzunluklu Listeler
+ * 
+ * Tanımlandığı anda boyutu belirlenen ve daha sonra değiştirilemeyen listelerdir.
+ */
 void main(List<String> args) {
+  // List.filled(uzunluk, varsayılan_değer)
   List<int> sayilar = List.filled(10, 0);
   print(sayilar);
+  
   sayilar[0] = 1;
   sayilar[1] = 12;
   sayilar[9] = 99;
   print(sayilar);
 
-  List<String> sehirler = List.filled(10, "BOS");
-  sehirler[0] = "ankara";
-  sehirler[1] = "van";
-  sehirler[2] = "istanbul";
+  List<String> sehirler = List.filled(10, "BOŞ");
+  sehirler[0] = "Ankara";
+  sehirler[1] = "Van";
+  sehirler[2] = "İstanbul";
   print(sehirler);
 
-  for (var i = 0; i < sayilar.length; i++) { // indexlerler işlem yapacak isek bu for yapısı kullanılabilir
-    print(sayilar[i] + 5);
-  }
-  for (String sehir in sehirler) { //sadece liste yazdırma işlemi varsa for in yapısı kullanıbilir
-    print("O anki sehir $sehir");
-  }
-  for (var sayi in sayilar) {
-    print("O anki sayi $sayi");
+  // 1. Geleneksel For Döngüsü: İndekslerle işlem yapmak için idealdir.
+  for (var i = 0; i < sayilar.length; i++) {
+    print("İndeks $i'deki sayının 5 fazlası: ${sayilar[i] + 5}");
   }
 
-  List karisik = List.filled(4, 0);// farklı veri tiplerini barındırır
+  // 2. For-In Döngüsü: Sadece elemanlara erişmek için kullanılır (Daha okunabilir).
+  for (String sehir in sehirler) {
+    print("Şehir: $sehir");
+  }
+
+  // Karışık (Dynamic) Liste: Belirli bir tip belirtilmezse her türlü veriyi tutabilir.
+  List karisik = List.filled(4, 0);
   karisik[0] = 8;
-  karisik[1] = "merhaba";
+  karisik[1] = "Merhaba";
   karisik[2] = true;
-  print(karisik);
-
+  print("Karışık liste: $karisik");
 }

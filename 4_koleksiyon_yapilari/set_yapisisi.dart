@@ -1,39 +1,41 @@
+/**
+ * Koleksiyon Yapıları: Set (Küme)
+ * 
+ * Listelerden farkı, her bir elemanı yalnızca BİR kere tutmasıdır.
+ * Elemanlar arasında sıralama garantisi yoktur (index yapısı yoktur).
+ */
 void main(List<String> args) {
-  Set<int> tekSayilar= Set(); // bu yapı listeden farklı olarak bir elemanı yalnız bir kere tutar.
+  Set<int> tekSayilar = Set();
   tekSayilar.add(1);
   tekSayilar.add(3);
   tekSayilar.add(5);
-  tekSayilar.add(3);
+  tekSayilar.add(3); // 3 zaten var olduğu için tekrar eklenmez.
 
-  //var ciftSayilar = {}; şeklinde tanım, map olarak ele alınır
-  var ciftSayilar = <int>{}; // şeklindeki kullanım sete daha uygundur 
+  // {} kullanımı: Eğer içini boş bırakırsanız Map olarak algılanır.
+  // Set için tip belirtmek (<int>{}) gerekir.
+  var ciftSayilar = <int>{}; 
   ciftSayilar.add(2);
   ciftSayilar.add(4);
   ciftSayilar.add(2);
 
-  print(ciftSayilar);
-  print(tekSayilar);
+  print("Çift Sayılar Set: $ciftSayilar");
+  print("Tek Sayılar Set: $tekSayilar");
 
   var sayilar = <int>{};
   sayilar.addAll(tekSayilar);
-  sayilar.addAll(ciftSayilar);// verilen sayıların sırası önemli değildir. tekrarı olmayacak şekilde tutar.
-  sayilar.addAll([5,5,5,5,5,92,92,7,7]);
-  print(sayilar);
-  // peki daha pratik bir yol var mı
+  sayilar.addAll(ciftSayilar);
+  sayilar.addAll([5, 5, 5, 92, 7]); // Tekrar eden 5'ler elenir.
+  print("Birleştirilmiş Set: $sayilar");
 
+  // Spread Operatörü (...) : Koleksiyonları birleştirmek için pratik bir yol.
   sayilar.clear();
-  sayilar = <int>{...tekSayilar,...ciftSayilar,...[5,55,5,55,73,73,0]};
-  print(sayilar);
+  sayilar = <int>{...tekSayilar, ...ciftSayilar, ...[5, 55, 0]};
+  print("Spread ile Birleştirilmiş: $sayilar");
 
-  //hali hazırda elimizde bulunan bir listeyi veya set yapısını nasıl bir set değişkenine atarız(tekrar eden elemenlardan kurtulmak)
-  var numaralar = Set.from([5,5,5,5,2,3,5,8,9,0]);
-  var numaralar2 = Set.from({5,5,5,5,2,3,5,8,9,0});// burda set yapısında tekrar eden eleman bulunmaz tarzında bir uyarı veriyor ama sorunsuz çalışacaktır.
+  // Listeden Set'e Dönüşüm: Tekrar eden elemanlardan kurtulmak için kullanılır.
+  var numaralar = Set.from([5, 5, 2, 3, 5, 8, 9, 0]);
+  print("Listeden oluşturulan Set: $numaralar");
 
-
-  print(numaralar);
-  print(numaralar2);
-  print(numaralar.contains(5));// 5 değerini içeriyor mu
-  print(numaralar.remove(4565));// belirtilen değeri kaldır.
-
-
+  print("5 değeri var mı? ${numaralar.contains(5)}");
+  numaralar.remove(0); // Belirtilen değeri kaldırır.
 }
