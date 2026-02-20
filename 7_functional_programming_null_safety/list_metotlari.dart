@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 /**
  * Functional Programming: İleri Seviye Liste Metotları

@@ -18,6 +18,8 @@ void main(List<String> args) {
   // if bloğu içinde mesaj'a bir değer atandı
   if (DateTime.now().hour < 12) {
     mesaj = "günaydın";
+  }else{
+    mesaj = "iyi akşamlar";
   }
   // NOT: Burada else bloğu açık değilse, derleyici mesaj'ın yine de null olabileceğini bilir.
   // Eğer else'de de bir değer atanırsa, derleyici "her koşulda değer var" çıkarımı yapardı.
@@ -25,7 +27,7 @@ void main(List<String> args) {
   // Type promotion: derleyici ! gördüğünde null kontrol görmediği için hata vermek isterse de,
   // burada programcı "ben bunu nullable olarak aldığımı biliyorum, riskini alıyorum" demektedir.
   print(mesaj);
-  print(mesaj!.length); // ! ile null assertion yap: derleyici uyarısını geç (çalışma zamanında null ise patlar)
+  print(mesaj.length); // ! ile null assertion yap: derleyici uyarısını geç (çalışma zamanında null ise patlar)
 
   // Fonksiyona null parametresi gönderme ve null-safe kontrol
   print(karakterSayisiniBul(null));
@@ -39,6 +41,18 @@ void main(List<String> args) {
   // setIsim() ile late değişkeni başlattık
   hazar.setIsim("hazar");
   print(hazar.isim); // artık güvenli: isim değeri var
+
+  // Null-aware operatörler
+  // `??` (if-null/coalescing): sol operand null ise sağdaki değeri kullanır.
+  int? nullOlabilir = null;
+  print(nullOlabilir ?? 10); // nullOlabilir null olduğu için 10 yazdırılır
+
+  // `?.` (null-aware access): eğer nesne null ise null döner, değilse devam eder.
+  // Yukarıda `liste.first?.length` ifadesi eğer first null ise null döner,
+  // sonra `?? 2` ile fallback (yedek) değer atanır.
+  List<String?> liste = [null, null, "hazar"];
+  print(liste.first?.length ?? 2); // first null -> null, ?? ile 2 yazdırılır
+
 
 }
 
