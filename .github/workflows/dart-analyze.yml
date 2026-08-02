@@ -1,0 +1,26 @@
+name: Dart analyzer
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyzer errors
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Analyze standalone examples
+        run: dart analyze --no-fatal-warnings .
+
+      - name: Explain validation scope
+        run: echo "Warnings are reported but allowed; runtime and file-writing behavior is not executed."
